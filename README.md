@@ -1,24 +1,12 @@
-# use-chat example
+# WIP Chat UI Dev Enviorment
 
-This is an example of the basic use of the [use-chat](https://github.com/chatscope/use-chat) library.
+This Branch currently has the latest changes and latest work-in-progress changes.
 
-Working app is available here: [https://use-chat.examples.chatscope.io](https://use-chat.examples.chatscope.io).
+**Part of this code was writen by Claude from Anthropic**
 
-For more information please visit [https://github.com/chatscope/use-chat](https://github.com/chatscope/use-chat).
+## Used Libraries
 
-Also, you can be interested in my React chat components library [https://github.com/chatscope/chat-ui-kit-react](https://github.com/chatscope/chat-ui-kit-react)
-
-Project website: [https://chatscope.io](https://chatscope.io)
-
-# Usage
-This application is based on [CRA](https://create-react-app.dev/).  
-Clone the repository and run:
-
-```console
-$ yarn run start
-```
-
-or:
-```console
-$ npm run start
-```
+**Main Libraries**
+- [chat-ui-kit-react](https://github.com/chatscope/chat-ui-kit-react/)
+- [chat-ui-kit-styles](https://github.com/chatscope/chat-ui-kit-styles)
+- [use-chat](https://github.com/chatscope/use-chat)
