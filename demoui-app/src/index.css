@@ -146,6 +146,8 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: #000700;
+    color: #00ff00;
 }
 
 html {

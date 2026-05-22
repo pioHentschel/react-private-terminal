@@ -14,7 +14,8 @@ import {
 } from '@chatscope/use-chat';
 import { ExampleChatService } from '@chatscope/use-chat/dist/examples/ExampleChatService';
 
-import { Chat, SideNav } from './App';
+import { Chat } from './App';
+// sessionArchive.ts is no longer used — session persistence was removed.
 
 // Simple unique-id helpers used by BasicStorage to assign ids to messages
 // and message groups. Swap these for uuid or nanoid later if you prefer.
@@ -67,10 +68,7 @@ root.render(
 export default function Layout() {
   return (
     <>
-      <SideNav />
-      {/* This is the side navigation, which will be used to switch between different chats */}
       <Outlet />
-      {/* This calls the elements defined in the BrowserRouter above */}
     </>
   );
 }

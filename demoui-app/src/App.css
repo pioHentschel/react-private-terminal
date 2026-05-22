@@ -1,97 +1,188 @@
-/* react-chat-ui stylings */
+/* =====================================================
+   Terminal Theme  |  bg: #000700  |  text: #00ff00
+   ===================================================== */
 
-#chat {
-  height: 100vh;
-}
+/* ── Layout ───────────────────────────────────────── */
 
+html,
 body {
   height: 100vh;
+  background: #000700;
+  color: #00ff00;
 }
 
-.chat-area {
-  height: 100vh;
+#root {
+  width: 80%;
+  height: 92vh;
+  margin: 4vh auto;
+  border: 2px solid #00ff00;
+  border-radius: 25px;
+  overflow: hidden;
 }
 
-#lista-conversas {
-  height: 70vh;
+/* ── Chatscope: containers ────────────────────────── */
+
+.cs-main-container,
+.cs-chat-container,
+.cs-message-list,
+.cs-message-list__scroll-wrapper {
+  background: #000700 !important;
+  border: none !important;
+  color: #00ff00 !important;
 }
-
-#icons {
-  cursor: pointer;
-}
-
-.start-103 {
-  left: 105% !important;
-}
-
-.start--7 {
-  left: -7px !important;
-}
-
-.msg-recebida {
-  background: #b1fcc1;
-  color: black;
-  max-width: 50%;
-}
-
-.msg-enviada {
-  background: #e1e6e2;
-  color: black;
-  max-width: 50%;
-}
-
-.status-ok {
-  color: blue;
-  font-weight: bolder;
-}
-
-.selected {
-  background: #f7e1ef;
-}
-
-.list-group-item {
-  cursor: pointer;
-}
-
-.list-group-item.selected:hover {
-  background: #f7e1ef;
-}
-
-.list-group-item:hover {
-  background: #f5f5f5;
-}
-
-
-/* Navigation / Chat List styling */
-
-.ChatList {
-  display: flex;
-  float: left;
-  background: #00003d;
-  color: #ffffff;
-  height: 100%;
-  width: 18%;
-  padding: 10px;
-}
-
-.ChatList > li {
-  padding: 10px;
-  border: solid 1px #ffffff;
-}
-
-/* Main chat styling */
-.message-list {
-  background: #00002d;
-}
-
 
 .MyChatContainer {
-  background: #dd0000;
   height: 100%;
-  width: 81%;
+  width: 100%;
+  background: #000700;
 }
 
 .cs-main-container {
   display: flex;
-  height: 90vh;
+  flex: 1 !important;
+  height: auto !important;
+}
+
+/* ── Terminal header ──────────────────────────────────── */
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.25);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.terminal-header__label {
+  opacity: 0.45;
+  margin-right: 0.4rem;
+}
+
+.terminal-header__value {
+  font-weight: 600;
+}
+
+/* ── Chatscope: message bubbles ───────────────────── */
+
+.cs-message {
+  margin-bottom: 0 !important;
+  font-size: 1.2em !important;
+}
+
+.cs-message__content {
+  background: #000700 !important;
+  color: #00ff00 !important;
+  border: none !important;
+  padding: 0.15rem 0.4rem !important;
+}
+
+.cs-message--incoming .cs-message__content {
+  background: #000700 !important;
+  color: #00ff00 !important;
+}
+
+/* Terminal prompt prefix on every text message */
+.cs-message__html-content::before {
+  content: '> ';
+}
+
+.cs-message__sent-time,
+.cs-message__sender-name {
+  color: rgba(0, 255, 0, 0.5) !important;
+}
+
+/* ── Chatscope: input area ────────────────────────── */
+
+.cs-message-input {
+  background: #000700 !important;
+  border-top: none !important;
+}
+
+.cs-message-input__content-editor-wrapper {
+  background: #000700 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.cs-message-input__content-editor-wrapper::before {
+  content: '> ';
+  color: #00ff00;
+  flex-shrink: 0;
+  padding-left: 0.4rem;
+}
+
+.cs-message-input__content-editor {
+  background: #000700 !important;
+  color: #00ff00 !important;
+  caret-color: #00ff00 !important;
+  padding-left: 0.4rem !important;
+}
+
+/* Placeholder text */
+.cs-message-input__content-editor[data-placeholder]:empty::before {
+  color: rgba(0, 255, 0, 0.4) !important;
+}
+
+/* ── Chatscope: input layout — attach button on right ─ */
+
+.cs-message-input > div:nth-child(1) { order: 3; }          /* attach → far right */
+.cs-message-input > div:nth-child(2) { order: 1; flex: 1; } /* editor → fills space */
+.cs-message-input > div:nth-child(3) { order: 2; }          /* send   */
+
+/* ── Chatscope: buttons (send / attach) ───────────── */
+
+.cs-button {
+  color: #00ff00 !important;
+}
+
+.cs-button:hover,
+.cs-button:focus {
+  color: #ffffff !important;
+  background: rgba(0, 255, 0, 0.12) !important;
+}
+
+.cs-button--send svg,
+.cs-button--attachment svg {
+  fill: #00ff00 !important;
+}
+
+/* ── Chatscope: disabled input ────────────────────── */
+
+.cs-message-input--disabled .cs-message-input__content-editor-wrapper {
+  opacity: 0.4 !important;
+}
+
+/* ── Demo / session controls ──────────────────────── */
+
+.message-list {
+  background: #000700 !important;
+}
+
+/* ── Terminal buttons ─────────────────────────────── */
+
+.terminal-btn {
+  background: #000700;
+  color: #00ff00;
+  border: 1px solid rgba(0, 255, 0, 0.5);
+  border-radius: 3px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.terminal-btn:hover:not(:disabled) {
+  background: rgba(0, 255, 0, 0.12);
+  color: #00ff00;
+}
+
+.terminal-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
