@@ -1,23 +1,34 @@
 /* =====================================================
-   Terminal Theme  |  bg: #000700  |  text: #00ff00
+   Pip-Boy Theme  |  monochrome phosphor screen
    ===================================================== */
+
+:root {
+  --pip-bg: #041007;
+  --pip-green: #38ff6e;
+  --pip-green-dim: rgba(56, 255, 110, 0.45);
+  --pip-glow: 0 0 2px rgba(56, 255, 110, 0.8), 0 0 6px rgba(56, 255, 110, 0.35);
+  --pip-font: 'Share Tech Mono', 'Courier New', monospace;
+}
 
 /* ── Layout ───────────────────────────────────────── */
 
 html,
 body {
   height: 100vh;
-  background: #000700;
-  color: #00ff00;
+  background: var(--pip-bg);
+  color: var(--pip-green);
+  font-family: var(--pip-font);
 }
 
 #root {
+  position: relative;
   width: 80%;
   height: 92vh;
   margin: 4vh auto;
-  border: 2px solid #00ff00;
+  border: 2px solid var(--pip-green);
   border-radius: 25px;
   overflow: hidden;
+  text-shadow: var(--pip-glow);
 }
 
 /* ── Chatscope: containers ────────────────────────── */
@@ -26,15 +37,16 @@ body {
 .cs-chat-container,
 .cs-message-list,
 .cs-message-list__scroll-wrapper {
-  background: #000700 !important;
+  background: var(--pip-bg) !important;
   border: none !important;
-  color: #00ff00 !important;
+  color: var(--pip-green) !important;
+  font-family: var(--pip-font) !important;
 }
 
 .MyChatContainer {
   height: 100%;
   width: 100%;
-  background: #000700;
+  background: var(--pip-bg);
 }
 
 .cs-main-container {
@@ -43,17 +55,173 @@ body {
   height: auto !important;
 }
 
+/* ── Pip-Boy shell & tab navigation ───────────────────── */
+
+.pipboy-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pipboy-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem 0;
+  border-bottom: 1px solid var(--pip-green-dim);
+  flex-shrink: 0;
+}
+
+.pipboy-tabs {
+  display: flex;
+  gap: 1.75rem;
+}
+
+.pipboy-tab {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--pip-green-dim);
+  font-family: var(--pip-font);
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  padding: 0.2rem 0.1rem 0.65rem;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+
+.pipboy-tab:hover {
+  color: var(--pip-green);
+}
+
+.pipboy-tab--active {
+  color: var(--pip-green);
+  text-shadow: var(--pip-glow);
+}
+
+.pipboy-tab--active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--pip-green);
+  box-shadow: var(--pip-glow);
+}
+
+.pipboy-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.pipboy-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: var(--pip-green-dim);
+}
+
+.pipboy-placeholder__label {
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: var(--pip-green);
+  text-shadow: var(--pip-glow);
+}
+
+.pipboy-placeholder__status {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+}
+
+/* ── RADIO tab: three-zone control panel ──────────────── */
+
+.radio-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 58% 42%;
+  grid-template-rows: 45% 55%;
+  grid-template-areas:
+    'left top-right'
+    'left bottom-right';
+}
+
+.radio-layout__left {
+  grid-area: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-right: 1px solid var(--pip-green-dim);
+}
+
+.radio-layout__top-right {
+  grid-area: top-right;
+  border-bottom: 1px solid var(--pip-green-dim);
+}
+
+.radio-layout__bottom-right {
+  grid-area: bottom-right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.radio-panel__btn {
+  width: 220px;
+  background: var(--pip-bg);
+  color: var(--pip-green);
+  border: 2px solid var(--pip-green);
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  font-family: var(--pip-font);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-shadow: var(--pip-glow);
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.radio-panel__btn:hover {
+  background: rgba(56, 255, 110, 0.12);
+}
+
+.radio-panel__btn:active {
+  background: var(--pip-green);
+  color: var(--pip-bg);
+  text-shadow: none;
+}
+
 /* ── Terminal header ──────────────────────────────────── */
 
 .terminal-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid rgba(0, 255, 0, 0.25);
+  border-bottom: 1px solid var(--pip-green-dim);
   font-size: 0.9rem;
   letter-spacing: 0.08em;
   flex-shrink: 0;
+}
+
+.terminal-header__list {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .terminal-header__label {
@@ -65,6 +233,115 @@ body {
   font-weight: 600;
 }
 
+/* ── CRT toggle switch ────────────────────────────── */
+
+.crt-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  color: var(--pip-green);
+  font-family: inherit;
+  padding: 0;
+}
+
+.crt-toggle:hover {
+  opacity: 1;
+}
+
+.crt-toggle__label {
+  letter-spacing: 0.06em;
+}
+
+.crt-toggle__switch {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  border: 1px solid var(--pip-green-dim);
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: border-color 120ms ease;
+}
+
+.crt-toggle__switch::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--pip-green-dim);
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.crt-toggle--on .crt-toggle__switch {
+  border-color: var(--pip-green);
+}
+
+.crt-toggle--on .crt-toggle__switch::after {
+  transform: translateX(14px);
+  background: var(--pip-green);
+  box-shadow: var(--pip-glow);
+}
+
+/* ── CRT screen effect (toggle-able for accessibility) ─ */
+
+.crt-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.crt-overlay--active {
+  opacity: 1;
+}
+
+.crt-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0px,
+    rgba(0, 0, 0, 0.18) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+.crt-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 10vw 2vw rgba(0, 0, 0, 0.65);
+  animation: crt-flicker 6s infinite;
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.85; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+  97% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-overlay::after {
+    animation: none;
+  }
+}
+
 /* ── Chatscope: message bubbles ───────────────────── */
 
 .cs-message {
@@ -73,15 +350,16 @@ body {
 }
 
 .cs-message__content {
-  background: #000700 !important;
-  color: #00ff00 !important;
+  background: var(--pip-bg) !important;
+  color: var(--pip-green) !important;
   border: none !important;
   padding: 0.15rem 0.4rem !important;
+  font-family: var(--pip-font) !important;
 }
 
 .cs-message--incoming .cs-message__content {
-  background: #000700 !important;
-  color: #00ff00 !important;
+  background: var(--pip-bg) !important;
+  color: var(--pip-green) !important;
 }
 
 /* Terminal prompt prefix on every text message */
@@ -91,18 +369,18 @@ body {
 
 .cs-message__sent-time,
 .cs-message__sender-name {
-  color: rgba(0, 255, 0, 0.5) !important;
+  color: var(--pip-green-dim) !important;
 }
 
 /* ── Chatscope: input area ────────────────────────── */
 
 .cs-message-input {
-  background: #000700 !important;
+  background: var(--pip-bg) !important;
   border-top: none !important;
 }
 
 .cs-message-input__content-editor-wrapper {
-  background: #000700 !important;
+  background: var(--pip-bg) !important;
   border: none !important;
   border-radius: 0 !important;
   display: flex !important;
@@ -111,21 +389,22 @@ body {
 
 .cs-message-input__content-editor-wrapper::before {
   content: '> ';
-  color: #00ff00;
+  color: var(--pip-green);
   flex-shrink: 0;
   padding-left: 0.4rem;
 }
 
 .cs-message-input__content-editor {
-  background: #000700 !important;
-  color: #00ff00 !important;
-  caret-color: #00ff00 !important;
+  background: var(--pip-bg) !important;
+  color: var(--pip-green) !important;
+  caret-color: var(--pip-green) !important;
   padding-left: 0.4rem !important;
+  font-family: var(--pip-font) !important;
 }
 
 /* Placeholder text */
 .cs-message-input__content-editor[data-placeholder]:empty::before {
-  color: rgba(0, 255, 0, 0.4) !important;
+  color: var(--pip-green-dim) !important;
 }
 
 /* ── Chatscope: input layout — attach button on right ─ */
@@ -137,18 +416,18 @@ body {
 /* ── Chatscope: buttons (send / attach) ───────────── */
 
 .cs-button {
-  color: #00ff00 !important;
+  color: var(--pip-green) !important;
 }
 
 .cs-button:hover,
 .cs-button:focus {
   color: #ffffff !important;
-  background: rgba(0, 255, 0, 0.12) !important;
+  background: rgba(56, 255, 110, 0.12) !important;
 }
 
 .cs-button--send svg,
 .cs-button--attachment svg {
-  fill: #00ff00 !important;
+  fill: var(--pip-green) !important;
 }
 
 /* ── Chatscope: disabled input ────────────────────── */
@@ -160,15 +439,15 @@ body {
 /* ── Demo / session controls ──────────────────────── */
 
 .message-list {
-  background: #000700 !important;
+  background: var(--pip-bg) !important;
 }
 
 /* ── Terminal buttons ─────────────────────────────── */
 
 .terminal-btn {
-  background: #000700;
-  color: #00ff00;
-  border: 1px solid rgba(0, 255, 0, 0.5);
+  background: var(--pip-bg);
+  color: var(--pip-green);
+  border: 1px solid var(--pip-green-dim);
   border-radius: 3px;
   padding: 0.25rem 0.6rem;
   font-size: 0.8rem;
@@ -178,8 +457,8 @@ body {
 }
 
 .terminal-btn:hover:not(:disabled) {
-  background: rgba(0, 255, 0, 0.12);
-  color: #00ff00;
+  background: rgba(56, 255, 110, 0.12);
+  color: var(--pip-green);
 }
 
 .terminal-btn:disabled {

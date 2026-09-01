@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "demoui-app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "demoui-app", "run", "start"],
+      "port": 3000
+    }
+  ]
+}
