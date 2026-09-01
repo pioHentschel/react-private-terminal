@@ -157,10 +157,12 @@ body {
   grid-area: left;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 1.25rem;
-  padding: 1.5rem;
+  margin-left: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-right: 1px solid var(--pip-green-dim);
 }
 
@@ -180,7 +182,6 @@ body {
 }
 
 .radio-panel__btn {
-  width: 220px;
   background: var(--pip-bg);
   color: var(--pip-green);
   border: 2px solid var(--pip-green);
@@ -195,11 +196,26 @@ body {
   transition: background 120ms ease, color 120ms ease;
 }
 
+.radio-layout__bottom-right .radio-panel__btn {
+  width: 220px;
+}
+
+.radio-layout__left .radio-panel__btn {
+  min-width: 220px;
+  text-align: left;
+}
+
 .radio-panel__btn:hover {
   background: rgba(56, 255, 110, 0.12);
 }
 
 .radio-panel__btn:active {
+  background: var(--pip-green);
+  color: var(--pip-bg);
+  text-shadow: none;
+}
+
+.radio-panel__btn--selected {
   background: var(--pip-green);
   color: var(--pip-bg);
   text-shadow: none;
