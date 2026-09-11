@@ -171,6 +171,12 @@ body {
   border-bottom: 1px solid var(--pip-green-dim);
 }
 
+.radio-visualizer {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .radio-layout__bottom-right {
   grid-area: bottom-right;
   display: flex;
@@ -219,6 +225,28 @@ body {
   background: var(--pip-green);
   color: var(--pip-bg);
   text-shadow: none;
+}
+
+.radio-station {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-panel__btn--disabled,
+.radio-panel__btn--disabled:hover,
+.radio-panel__btn--disabled:active {
+  background: var(--pip-bg);
+  color: var(--pip-green-dim);
+  border-color: var(--pip-green-dim);
+  text-shadow: none;
+  cursor: not-allowed;
+}
+
+.radio-station__note {
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--pip-green-dim);
 }
 
 /* ── Terminal header ──────────────────────────────────── */
