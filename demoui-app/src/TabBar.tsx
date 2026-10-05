@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PIPBOY_TABS = ['STAT', 'INV', 'DATA', 'MAP', 'RADIO'] as const;
+const PIPBOY_TABS = ['STAT', 'INV', 'DATA', 'MAP', 'TERMINAL', 'RADIO'] as const;
 type PipBoyTab = typeof PIPBOY_TABS[number];
 
 type TabBarProps = {
