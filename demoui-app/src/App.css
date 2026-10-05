@@ -509,3 +509,196 @@ body {
   opacity: 0.35;
   cursor: default;
 }
+/* ── INV tab: lists bar | stocked items | restock items ── */
+
+.inv-layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 140px minmax(0, 3fr) minmax(0, 2fr);
+}
+
+.inv-lists {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--pip-green-dim);
+}
+
+.inv-lists__names {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.inv-lists__name {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--pip-green-dim);
+  color: var(--pip-green);
+  font-family: var(--pip-font);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inv-lists__name:hover {
+  background: rgba(56, 255, 110, 0.12);
+}
+
+.inv-lists__name--active,
+.inv-lists__name--active:hover {
+  background: var(--pip-green);
+  color: var(--pip-bg);
+}
+
+.inv-lists__new {
+  padding: 0.5rem;
+  border-top: 1px solid var(--pip-green-dim);
+}
+
+.inv-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+.inv-panel--stock {
+  border-right: 1px solid var(--pip-green-dim);
+}
+
+.inv-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--pip-green-dim);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-shadow: var(--pip-glow);
+  flex-shrink: 0;
+}
+
+.inv-items {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inv-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid rgba(56, 255, 110, 0.15);
+}
+
+.inv-item__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inv-empty {
+  padding: 1rem 0.75rem;
+  opacity: 0.45;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+}
+
+.inv-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.inv-qty__input,
+.inv-input {
+  background: var(--pip-bg);
+  color: var(--pip-green);
+  border: 1px solid var(--pip-green-dim);
+  border-radius: 0;
+  font-family: var(--pip-font);
+  font-size: 0.9rem;
+  padding: 0.3rem 0.4rem;
+  min-width: 0;
+}
+
+.inv-qty__input {
+  width: 3.2rem;
+  text-align: center;
+}
+
+.inv-input:focus,
+.inv-qty__input:focus {
+  outline: none;
+  border-color: var(--pip-green);
+  box-shadow: var(--pip-glow);
+}
+
+.inv-input::placeholder {
+  color: var(--pip-green-dim);
+}
+
+.inv-add {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--pip-green-dim);
+  flex-shrink: 0;
+}
+
+.inv-add .inv-input:first-child {
+  flex: 1;
+}
+
+.inv-lists__new .inv-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inv-input--qty {
+  width: 3.5rem;
+  text-align: center;
+}
+
+.inv-btn {
+  background: var(--pip-bg);
+  color: var(--pip-green);
+  border: 1px solid var(--pip-green);
+  border-radius: 0;
+  font-family: var(--pip-font);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.inv-btn--small {
+  padding: 0.15rem 0.4rem;
+  font-size: 0.75rem;
+}
+
+.inv-btn:hover {
+  background: rgba(56, 255, 110, 0.12);
+}
+
+.inv-btn:active {
+  background: var(--pip-green);
+  color: var(--pip-bg);
+}

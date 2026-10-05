@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Stand-in for tabs whose content isn't decided yet (STAT / INV / DATA / MAP).
+// Stand-in for tabs whose content isn't decided yet (STAT / DATA / MAP).
 function PlaceholderTab({ label }: { label: string }) {
   return (
     <div className="pipboy-placeholder">

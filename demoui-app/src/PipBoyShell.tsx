@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { TerminalTab } from './App';
+import { InventoryTab } from './InventoryTab';
 import { PlaceholderTab } from './PlaceholderTab';
 import { RadioTab } from './RadioTab';
 import { PIPBOY_TABS, PipBoyTab, TabBar } from './TabBar';
@@ -64,7 +65,8 @@ function PipBoyShell() {
       <div className={`crt-overlay ${crtEnabled ? 'crt-overlay--active' : ''}`} aria-hidden="true" />
 
       <div className="pipboy-content">
-        {activeTab === 'TERMINAL' ? <TerminalTab />
+        {activeTab === 'INV' ? <InventoryTab />
+          : activeTab === 'TERMINAL' ? <TerminalTab />
           : activeTab === 'RADIO' ? <RadioTab />
           : <PlaceholderTab label={activeTab} />}
       </div>
