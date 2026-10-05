@@ -14,7 +14,7 @@ import {
 } from '@chatscope/use-chat';
 import { ExampleChatService } from '@chatscope/use-chat/dist/examples/ExampleChatService';
 
-import { Chat } from './App';
+import { PipBoyShell } from './PipBoyShell';
 // sessionArchive.ts is no longer used — session persistence was removed.
 
 // Simple unique-id helpers used by BasicStorage to assign ids to messages
@@ -57,8 +57,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Chat />} />
-          {/* Value has to change to display a different chat */}
+          <Route path="/" element={<PipBoyShell />} />
         </Route>
       </Routes>
     </BrowserRouter>

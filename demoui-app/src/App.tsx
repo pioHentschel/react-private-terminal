@@ -71,9 +71,9 @@ function humanBytes(bytes: number): string {
 // All lists stored by name → items. Kept in component state; resets on reload.
 type ListStore = Record<string, string[]>;
 
-// ── Chat component ───────────────────────────────────────────────────────────
+// ── INV tab: terminal/chat + list commands ───────────────────────────────────
 
-function Chat() {
+function InventoryTab() {
   const {
     currentMessages,
     activeConversation,
@@ -342,10 +342,12 @@ function Chat() {
 
       {/* Active list indicator */}
       <div className="terminal-header">
-        <span className="terminal-header__label">list:</span>
-        <span className="terminal-header__value">
-          {activeListName ?? '—'}
-        </span>
+        <div className="terminal-header__list">
+          <span className="terminal-header__label">list:</span>
+          <span className="terminal-header__value">
+            {activeListName ?? '—'}
+          </span>
+        </div>
       </div>
 
       <MainContainer>
@@ -421,4 +423,4 @@ function Chat() {
   );
 }
 
-export { Chat };
+export { InventoryTab };
