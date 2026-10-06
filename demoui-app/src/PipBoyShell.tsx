@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { TerminalTab } from './App';
+import { DataTab } from './DataTab';
 import { InventoryTab } from './InventoryTab';
 import { PlaceholderTab } from './PlaceholderTab';
 import { RadioTab } from './RadioTab';
@@ -66,6 +67,7 @@ function PipBoyShell() {
 
       <div className="pipboy-content">
         {activeTab === 'INV' ? <InventoryTab />
+          : activeTab === 'DATA' ? <DataTab />
           : activeTab === 'TERMINAL' ? <TerminalTab />
           : activeTab === 'RADIO' ? <RadioTab />
           : <PlaceholderTab label={activeTab} />}
