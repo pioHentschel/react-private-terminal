@@ -9,7 +9,7 @@ The app lives in [`demoui-app/`](demoui-app/); every command below is run from t
 
 | Tab | What it does |
 | --- | --- |
-| STAT | Placeholder |
+| STAT | System readout: CPU, GPU, RAM and motherboard (model, usage, temperature where available), OS, CPU architecture (x86/ARM), internet status and network upload/download speed. Needs the local stats server (started by `yarn start`). |
 | INV | Inventory: stock lists on the left, items in the selected list in the middle, items that need restocking on the right. Every item has a quantity. Saved in the browser (`localStorage`). |
 | DATA | Read-only Google Calendar view: events of the selected day, details of the clicked event on the right. Needs the Google setup below. |
 | MAP | Placeholder |
@@ -28,9 +28,32 @@ yarn install
 yarn start
 ```
 
+`yarn start` runs two processes together (via [concurrently](https://github.com/open-cli-tools/concurrently), output labelled `[web]` and `[stats]`): the React dev server and the local stats server for the STAT tab. Ctrl+C stops both.
+
 The app opens at <http://localhost:3000>. Without the Google setup below, everything works except the DATA tab, which shows a setup hint.
 
-Other scripts: `yarn build` (production build into `demoui-app/build`) and `yarn test`.
+Run `yarn install` again after pulling changes. `node_modules` isn't committed, so new dependencies (such as `concurrently` and `systeminformation`) are missing until you do.
+
+Other scripts:
+
+| Script | What it does |
+| --- | --- |
+| `yarn start:web` | Only the React dev server (the STAT tab will show "stats server offline"). |
+| `yarn stats-server` | Only the stats server, on port 3001. |
+| `yarn build` | Production build into `demoui-app/build`. |
+| `yarn test` | Runs the tests. |
+
+### STAT tab: stats server
+
+A browser can't read hardware details, so the STAT tab polls a small Node server ([`demoui-app/server/stats-server.js`](demoui-app/server/stats-server.js), built on [systeminformation](https://github.com/sebhildebrandt/systeminformation)) every 2 seconds. It listens only on `127.0.0.1:3001`, and the dev server forwards `/api/*` to it (`"proxy"` in `package.json`). Set `STATS_PORT` to change the port; if you do, update the `proxy` value to match.
+
+Some readings are not available everywhere and show `N/A`: CPU temperature and GPU usage/temperature are often unavailable on macOS (especially Apple Silicon), and may need admin rights on Windows. Network speed and latency are measured while the app runs, so the first reading can be 0.
+
+The stats server isn't part of the production build (`yarn build`); it has to run next to wherever the app is served.
+
+### If `yarn start` fails with `concurrently` not found
+
+Same cause as below: the dependencies aren't installed. Run `yarn install` inside `demoui-app/`.
 
 ### If `yarn start` fails with exit code 127
 
@@ -39,6 +62,8 @@ Other scripts: `yarn build` (production build into `demoui-app/build`) and `yarn
 ```bash
 cd demoui-app && rm -rf node_modules && yarn install
 ```
+
+On Windows (PowerShell): `cd demoui-app; Remove-Item -Recurse -Force node_modules; yarn install`.
 
 Also make sure you run yarn inside `demoui-app/`, not the repository root (there is no `package.json` there).
 
@@ -106,4 +131,5 @@ The access token is kept only in `sessionStorage` (about one hour); you are aske
 - [chat-ui-kit-react](https://github.com/chatscope/chat-ui-kit-react/)
 - [chat-ui-kit-styles](https://github.com/chatscope/chat-ui-kit-styles)
 - [use-chat](https://github.com/chatscope/use-chat)
+- [systeminformation](https://github.com/sebhildebrandt/systeminformation) (STAT tab) and [concurrently](https://github.com/open-cli-tools/concurrently) (runs the app and stats server together)
 - [Google Identity Services](https://developers.google.com/identity/oauth2/web/guides/overview) and the [Google Calendar API](https://developers.google.com/workspace/calendar/api/guides/overview) (DATA tab)
