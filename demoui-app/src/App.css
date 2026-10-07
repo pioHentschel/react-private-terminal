@@ -821,3 +821,69 @@ body {
 .data-details__notes {
   white-space: pre-wrap;
 }
+
+/* ── STAT tab ─────────────────────────────────────── */
+
+.stat-tab {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+
+.stat-tab__warn {
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.stat-panel {
+  border: 1px solid var(--pip-green-dim);
+  padding: 0.75rem 1rem;
+}
+
+.stat-panel__title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  color: var(--pip-green);
+  text-shadow: var(--pip-glow);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.15rem 0;
+  font-size: 0.9rem;
+}
+
+.stat-row__label {
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.stat-row__value {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.stat-bar {
+  height: 6px;
+  margin: 0.15rem 0 0.35rem;
+  border: 1px solid var(--pip-green-dim);
+}
+
+.stat-bar__fill {
+  height: 100%;
+  background: var(--pip-green);
+  box-shadow: var(--pip-glow);
+  transition: width 0.4s ease;
+}

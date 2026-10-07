@@ -5,6 +5,7 @@ import { DataTab } from './DataTab';
 import { InventoryTab } from './InventoryTab';
 import { PlaceholderTab } from './PlaceholderTab';
 import { RadioTab } from './RadioTab';
+import { StatTab } from './StatTab';
 import { PIPBOY_TABS, PipBoyTab, TabBar } from './TabBar';
 
 const CRT_STORAGE_KEY = 'pipboy:crt-enabled';
@@ -12,7 +13,7 @@ const CRT_STORAGE_KEY = 'pipboy:crt-enabled';
 // Top-level Pip-Boy frame: tab navigation + the screen-wide CRT toggle,
 // both of which persist across whichever tab is active.
 function PipBoyShell() {
-  const [activeTab, setActiveTab] = useState<PipBoyTab>('TERMINAL');
+  const [activeTab, setActiveTab] = useState<PipBoyTab>('STAT');
 
   // CRT screen effect (scanlines/flicker) — off by default for accessibility,
   // persisted across reloads once a user picks a setting.
@@ -66,7 +67,8 @@ function PipBoyShell() {
       <div className={`crt-overlay ${crtEnabled ? 'crt-overlay--active' : ''}`} aria-hidden="true" />
 
       <div className="pipboy-content">
-        {activeTab === 'INV' ? <InventoryTab />
+        {activeTab === 'STAT' ? <StatTab />
+          : activeTab === 'INV' ? <InventoryTab />
           : activeTab === 'DATA' ? <DataTab />
           : activeTab === 'TERMINAL' ? <TerminalTab />
           : activeTab === 'RADIO' ? <RadioTab />

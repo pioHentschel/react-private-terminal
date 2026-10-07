@@ -4,8 +4,24 @@
     {
       "name": "demoui-app",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "demoui-app", "run", "start"],
+      "runtimeArgs": [
+        "--prefix",
+        "demoui-app",
+        "run",
+        "start"
+      ],
       "port": 3000
+    },
+    {
+      "name": "stats-server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "demoui-app",
+        "run",
+        "stats-server"
+      ],
+      "port": 3001
     }
   ]
 }

@@ -9,17 +9,21 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.1",
+    "systeminformation": "^5.33.15",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "concurrently": "^10.0.5",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently -k -n web,stats -c green,cyan \"yarn start:web\" \"yarn stats-server\"",
+    "start:web": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "stats-server": "node server/stats-server.js"
   },
   "browserslist": {
     "production": [
@@ -32,5 +36,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://127.0.0.1:3001"
 }
